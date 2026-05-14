@@ -1,30 +1,14 @@
 
-// Gọi hàm get_recommendations
+// Gọi hàm get_recommendations của api.py
 document.getElementById('searchBtn').addEventListener('click', async () => {
-const title = document.getElementById('searchInput').value.trim();
-if (!title) return;
-
-try {
-    const res = await fetch(`http://localhost:8000/recommend?title=${encodeURIComponent(title)}`);
-    const data = await res.json();
-
-    const container = document.getElementById('results');
-    container.innerHTML = data.recommendations.map(game => `    
-    <div>
-        <img src="${game.image}" width="200">
-        <p>${game.name}</p>
-    </div>
-    `).join('');
-
-} catch (err) {
-    console.error('Lỗi:', err);
-}
+  const title = document.getElementById('searchInput').value.trim();
+  if (!title) return;
+  window.location.href = `discovery.html?q=${encodeURIComponent(title)}`;
 });
 
 
 
-
-// Load trending khi trang mở
+// Gọi hàm trending của api.py
 async function loadTrending() {
   const res = await fetch('http://localhost:8000/trending');
   const data = await res.json();
@@ -44,21 +28,13 @@ async function loadTrending() {
   `;
 }
 
-function selectGame(name) {
-  document.getElementById('searchInput').value = name;
-  document.getElementById('searchDropdown').style.display = 'none';
-}
 
-function goAdvanced() {
-  // sau này chuyển sang trang advanced
-  alert('Advanced search coming soon!');
-}
-
+// Khi click vào ô tìm kiếm thì dropdown hiện ra
 document.getElementById('searchInput').addEventListener('focus', () => {
   document.getElementById('searchDropdown').style.display = 'block';
 });
 
-// Ẩn khi click ra ngoài — dùng mousedown thay vì click
+// Khi click ra ngoài ẩn dropdown
 document.addEventListener('mousedown', (e) => {
   const dropdown = document.getElementById('searchDropdown');
   const searchBox = document.querySelector('.home__search');
@@ -72,3 +48,13 @@ loadTrending();
 
 
 
+// Khi click vào game thì tự động điền vào SearchBar sau đó dropdown biến mất
+function selectGame(name) {
+  window.location.href = `discovery.html?q=${encodeURIComponent(name)}`;
+}
+
+// Chuyển sang discovery.html
+function goAdvanced() {
+  // sau này chuyển sang trang advanced
+  window.location.href = 'discovery.html';
+}

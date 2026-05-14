@@ -48,6 +48,7 @@
 .nav__link {
   color: var(--title-color);
   font: var(--font-semi-bold) var(--normal-font-size-alt) var(--second-font);
+  position: relative;
   transition:
     color 0.4s,
     text-shadow 0.4s;
@@ -56,4 +57,28 @@
 .nav__link:hover {
   color: var(--primary-color);
   text-shadow: 0 8px 16px var(--secondary-color);
+}
+
+
+.nav__link.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 2px;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::after,
+.nav__link.active::after {
+  width: 100%;
 }

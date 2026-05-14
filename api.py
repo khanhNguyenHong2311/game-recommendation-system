@@ -16,10 +16,10 @@ app.add_middleware(
 
 # RUN : uvicorn api:app --reload --port 8000
 games = pickle.load(open('games_list.pkl', 'rb'))
+games = games.loc[:, ~games.columns.duplicated()]
 tfidf_matrix = pickle.load(open('tfidf_matrix.pkl', 'rb'))
 print(games.columns.tolist())
-print(games['Positive'].dtype)
-print(games['Positive'].head())
+
 
 def get_recommendations(title: str):
     matches = games[games['Name'] == title]
@@ -42,7 +42,7 @@ def get_recommendations(title: str):
     ]
 
 # End point
-
+    
 @app.get("/games")  
 def list_games():
     return {"games": games["Name"].tolist()}
@@ -67,6 +67,56 @@ def trending(limit: int = 5):
                     "positive": int(row["Positive"])
                 }
                 for _, row in top.iterrows()
+            ]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+@app.get("/search")
+def search(
+    q: str = "",
+    genre: str = "",
+    tag: str = "",
+    os: str = "",
+    free: bool = False,
+    limit: int = 20
+):
+    try:
+        df = games.copy()
+        
+        if q:
+            df = df[df['Name'].str.contains(q, case=False, na=False)]
+        
+        if genre:
+            df = df[df['Genres'].str.contains(genre, case=False, na=False)]
+        
+        if tag:
+            df = df[df['Tags'].str.contains(tag, case=False, na=False)]
+        
+        if os == 'windows':
+            df = df[df['Windows'] == True]
+        elif os == 'mac':
+            df = df[df['Mac'] == True]
+        elif os == 'linux':
+            df = df[df['Linux'] == True]
+        
+        if free:
+            df = df[df['Price'] == 0]
+        
+        df = df.sort_values('Positive', ascending=False)
+        
+        return {
+            "total": len(df),
+            "results": [
+                {
+                    "name": row["Name"],
+                    "image": row["Header image"],
+                    "genres": row["Genres"],
+                    "price": float(row["Price"]),
+                    "positive": int(row["Positive"])
+                }
+                for _, row in df.head(limit).iterrows()
             ]
         }
     except Exception as e:

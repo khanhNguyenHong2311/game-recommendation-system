@@ -3,7 +3,6 @@
 .home {
   position: relative;
   margin-top: 1rem;
-  
 }
 
 .home__container {
@@ -169,15 +168,4 @@
   color: var(--primary-color);
 }
 
-.home__search {
-  display: flex;  
-  align-items: center;
-  width: 1000px;          /* độ rộng search bar */
-  margin: .5rem auto 0;
-  background-color: hsl(120, 2%, 12%);
-  border-radius: 3px;   /* bo tròn kiểu hero search */
-  padding: 0;
-  border: 1px solid #316282;
-  overflow: hidden;
-  position: relative;
-}
+

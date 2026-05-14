@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRS</title>  
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="../css/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <!--================== HEADER ==================-->
+
+    <header class="header" id="header">
+      <!------------ Animate ------------>
+      <div class="blob-animate"></div>
+
+      <!------------ Navigation container ------------>
+      <nav class="nav container">
+        <!-- Logo -->
+        <a href="#" class="nav__logo">GRS</a>
+
+        <!------------  Navigation ---------- -->
+        <div class="nav__menu" id="nav-menu">
+          <!-- List -->
+          <ul class="nav__list">
+            <li>
+              <a href="index.html" class="nav__link">Home</a>
+            </li>
+
+            <li>
+              <a href="discovery.html" class="nav__link">Discovery</a>
+            </li>
+
+            <li>
+              <a href="#projects" class="nav__link">Genres</a>
+            </li>
+
+            <li>
+              <a href="#resume" class="nav__link">Favorites</a>
+            </li>
+
+            <li>
+              <a href="#contact" class="nav__link">Theme</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+    </header>
+
+    <!--================== MAIN ==================-->
+
+    <main class="main">
+      <!--================== HOME SECTION ==================-->
+      <section class="discovery section container" id="discovery">
+        <div class="discovery__top">
+        
+            <div class="discovery__suggestion">
+              <h3>Find Your Next Favorite</h3>
+            </div>
+
+            <div class="discovery__search">
+              <input type="text" id="searchInputDiscovery" placeholder="Search a game to get recommendations...">
+              <button id="searchBtnDiscovery">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+
+            <!-- <div id="searchDropdown"></div>
+
+            <div id="results" style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;"></div> -->
+        </div>
+
+        <div class="discovery__body">
+            <!-- Result -->
+            <div>
+                <div class="discovery__results">
+                    <p id="resultCount">Searching...</p>
+                    <select class="sort-select" id="sortSelect" onchange="doSearch()">
+                        <option value="positive">Most Popular</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="price_desc">Price: High to Low</option>
+                        <option value="avg_time_asc">Avg playtime: Low to High</option>
+                        <option value="avg_time_desc">Avg playtime: High to Low</option>
+                        <option value="name">Name A-Z</option>
+                    </select>
+                </div>
+                <div id="resultsList"></div>
+                <div class="pagination" id="pagination"></div>
+            </div>
+
+            <!-- Filter -->
+            <div class="filter-sidebar">
+
+                <!-- OS Filter -->
+                <div class="filter-section" id="osFilter">
+                    <div class="filter-section__header" onclick="toggleFilter('osFilter')">
+                        Operating System <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-section__body">
+                        <label class="filter-checkbox">
+                            <input type="radio" name="os" value="" checked onchange="doSearch()"> All
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="os" value="windows" onchange="doSearch()"> Windows
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="os" value="mac" onchange="doSearch()"> macOS
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="os" value="linux" onchange="doSearch()"> Linux
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="filter-section" id="priceFilter">
+                    <div class="filter-section__header" onclick="toggleFilter('priceFilter')">
+                        Price <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-section__body">
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price" value="" checked onchange="doSearch()"> Any Price
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price" value="free" onchange="doSearch()"> Free to Play
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price" value="paid" onchange="doSearch()"> Paid
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Genre Filter -->
+                <div class="filter-section" id="genreFilter">
+                    <div class="filter-section__header" onclick="toggleFilter('genreFilter')">
+                        Genre <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-section__body">
+                        <input type="text" class="filter-search" placeholder="Search genres..." id="genreSearch" oninput="filterGenreList()" />
+                    <div id="genreList"></div>
+                    </div>
+                </div>
+
+                <!-- Tag Filter -->
+                <div class="filter-section" id="tagFilter">
+                    <div class="filter-section__header" onclick="toggleFilter('tagFilter')">
+                        Tags <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-section__body">
+                        <input type="text" class="filter-search" placeholder="Search tags..." id="tagSearch" oninput="filterTagList()" />
+                        <div id="tagList"></div>
+                    </div>
+                </div>
+
+                <button class="filter-clear" onclick="clearFilters()">
+                    <i class="fa-solid fa-rotate-left"></i> Clear All Filters
+                </button>
+
+            </div>
+        </div>
+        
+
+      </section>
+
+      <!--================== ABOUT SECTION ==================-->
+      <section class="about section" id="about">
+        
+      </section>
+    </main>
+
+    <!--================== PROJECTS ==================-->
+    <section class="projects section" id="projects">
+      
+    </section>
+
+    <!--================== ANIME JS ==================-->
+    <script type="module" src="../javascript/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+    <script src="../javascript/split_text.js"></script>
+    <script src="../javascript/swiper-bundle.min.js"></script>
+    <script src="../javascript/swiper.js"></script>
+    <script src="../javascript/main.js"></script>
+    <script src="../javascript/search_bar.js"></script>
+    <script src="../javascript/discovery.js"></script>
+  </body>
+</html>

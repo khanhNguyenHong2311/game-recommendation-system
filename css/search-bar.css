@@ -2,6 +2,21 @@
   margin-top: 2rem;
 }
 
+/*  ================================= HOME SEARCH BAR ================================= */
+
+.home__search {
+  display: flex;  
+  align-items: center;
+  width: 1000px;          /* độ rộng search bar */
+  margin: .5rem auto 0;
+  background-color: hsl(120, 2%, 12%);
+  border-radius: 3px;   /* bo tròn kiểu hero search */
+  padding: 0;
+  border: 1px solid #316282;
+  overflow: hidden;
+  position: relative;
+}
+
 #searchDropdown {
   position: absolute;
   width: 1000px;
@@ -95,3 +110,52 @@
   background-color: #66c0f4;
 }
 
+/*  ================================= DISCOVERY SEARCH BAR ================================= */
+
+
+.discovery__search {
+  display: flex;  
+  align-items: flex-start;
+  width: 700px;         
+  margin: .5rem 0 0 0;
+  background-color: hsl(120, 2%, 12%);
+  border-radius: 3px; 
+  padding: 0;
+  border: 1px solid #316282;
+  overflow: hidden;
+  position: relative;
+}
+
+
+#searchInputDiscovery {
+  flex: 1;               
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 8px 15px;    
+  font-size: 13px;
+  outline: none;
+}
+
+#searchInputDiscovery::placeholder {
+  color: #808080;
+  font-style: italic;
+}
+
+#searchBtnDiscovery {
+  background-color: #316282;
+  color: #fff;
+  border: none;
+  padding: 7px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.discovery__search:focus-within {
+  border-color: #66c0f4;
+}
+
+#searchBtnDiscovery:hover {
+  background-color: #66c0f4;
+}
