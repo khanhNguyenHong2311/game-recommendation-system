@@ -42,3 +42,4 @@ if st.button('Tìm game tương tự'):
             st.image(row['Header image'], use_container_width=True)
             st.write(f"**{row['Name']}**")
 
+

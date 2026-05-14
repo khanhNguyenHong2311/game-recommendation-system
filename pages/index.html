@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRS</title>  
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="../css/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <!--================== HEADER ==================-->
+
+    <header class="header" id="header">
+      <!------------ Animate ------------>
+      <div class="blob-animate"></div>
+
+      <!------------ Navigation container ------------>
+      <nav class="nav container">
+        <!-- Logo -->
+        <a href="#" class="nav__logo">GRS</a>
+
+        <!------------  Navigation ---------- -->
+        <div class="nav__menu" id="nav-menu">
+          <!-- List -->
+          <ul class="nav__list">
+            <li>
+              <a href="#home" class="nav__link">Home</a>
+            </li>
+
+            <li>
+              <a href="#about" class="nav__link">Discovery</a>
+            </li>
+
+            <li>
+              <a href="#projects" class="nav__link">Genres</a>
+            </li>
+
+            <li>
+              <a href="#resume" class="nav__link">Favorites</a>
+            </li>
+
+            <li>
+              <a href="#contact" class="nav__link">Theme</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+    </header>
+
+    <!--================== MAIN ==================-->
+
+    <main class="main">
+      <!--================== HOME SECTION ==================-->
+      <section class="home section" id="home">
+        <div class="home__top">
+          
+          <div class="home__data">
+            <h3 class="home__greeting">Welcome to</h3>
+            <h1 class="home__name">Smart Game <br />Recommendation System</h1>
+          </div>
+
+          <div class="search__wrapper">
+
+            <div class="home__suggestion">
+              <h3>Find Your Next Favorite</h3>
+            </div>
+
+            <div class="home__search">
+              <input type="text" id="searchInput" placeholder="Search a game to get recommendations...">
+              <button id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+
+            <div id="searchDropdown"></div>
+          </div>
+          <div id="results" style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;"></div>
+        </div>
+
+
+
+      </section>
+
+      <!--================== ABOUT SECTION ==================-->
+      <section class="about section" id="about">
+        
+      </section>
+    </main>
+
+    <!--================== PROJECTS ==================-->
+    <section class="projects section" id="projects">
+      
+    </section>
+
+    <!--================== ANIME JS ==================-->
+    <script type="module" src="../javascript/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+    <script src="../javascript/split_text.js"></script>
+    <script src="../javascript/swiper-bundle.min.js"></script>
+    <script src="../javascript/swiper.js"></script>
+    <script src="../javascript/search_bar.js"></script>
+  </body>
+</html>

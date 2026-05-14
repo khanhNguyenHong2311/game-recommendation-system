@@ -1,0 +1,183 @@
+/* ====================== HOME ==================== */
+
+.home {
+  position: relative;
+  margin-top: 1rem;
+  
+}
+
+.home__container {
+  position: relative;
+  padding-top: 4rem;
+  row-gap: 3rem;
+}
+
+.home__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 10.5rem;
+}
+
+.home__data {
+  position: absolute;
+  top: 9rem;
+  z-index: 2;
+  text-align: center;
+}
+
+
+.home__greeting {
+  display: block;
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-regular);
+  color: var(--primary-color);
+}
+
+.home__name {
+  display: block;
+  font-size: var(--bigger-font-size);
+}
+
+.home__suggestion {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  font-size: var(--normal-font-size);
+  margin-top: 1rem;
+  padding-left: .2rem;
+}
+
+.home__image {
+  position: relative;
+  display: grid;
+  overflow-y: clip;
+}
+
+.home__image .blob-animate {
+  width: 270px;
+  height: 270px;
+  bottom: -4rem;
+  justify-self: center;
+}
+
+.home__perfil {
+  width: 300px;
+  position: relative;
+  justify-self: center;
+}
+
+.home__shadow,
+.home__info,
+.home__social,
+.home__cv {
+  position: absolute;
+}
+
+.home__shadow {
+  width: 100%;
+  height: 375px;
+  bottom: 1rem;
+  background: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 0%, 0) 90%,
+    hsl(120, 7%, 8%) 100%
+  );
+  z-index: 1;
+}
+
+.home__info {
+  z-index: 2;
+  justify-self: center;
+  bottom: -5rem;
+}
+
+.home__split {
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-regular);
+  color: var(--secondary-color);
+}
+
+.home__profession-1,
+.home__profession-2 {
+  font-size: var(--bigger-font-size);
+  text-align: center;
+  overflow: hidden;
+}
+
+.home__profession-1 {
+  position: relative;
+  color: var(--primary-color);
+}
+
+.home__profession-1::after {
+  position: absolute;
+  content: "";
+  background: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 0%, 0) 60%,
+    hsl(120, 7%, 8%) 100%
+  );
+  inset: 0;
+}
+
+.home__profession-2 {
+  transform: translateY(-1rem);
+}
+
+.home__social { 
+  z-index: 2;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.75rem;
+  transform: translateY(20px);
+}
+
+.home__social-link {
+  color: var(--title-color);
+  font-size: 1.25rem;
+  transition:
+    transform 0.4s,
+    color 0.4s;
+}
+
+.home__social-link:hover {
+  color: var(--primary-color);
+  transform: translateX(0.25rem);
+}
+
+.home__cv {
+  z-index: 2;
+  right: -3.2rem;
+  bottom: -1rem;
+  rotate: -90deg;
+  color: var(--text-color-);
+  font: var(--font-medium) var(--small-font-size) var(--secondary-color);
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  transition: color 0.4s;
+}
+
+.home__cv i {
+  font-size: 1rem;
+}
+
+.home__cv:hover {
+  color: var(--primary-color);
+}
+
+.home__search {
+  display: flex;  
+  align-items: center;
+  width: 1000px;          /* độ rộng search bar */
+  margin: .5rem auto 0;
+  background-color: hsl(120, 2%, 12%);
+  border-radius: 3px;   /* bo tròn kiểu hero search */
+  padding: 0;
+  border: 1px solid #316282;
+  overflow: hidden;
+  position: relative;
+}

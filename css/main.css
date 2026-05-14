@@ -1,0 +1,18 @@
+/* ===== CSS ENTRY POINT ===== */
+@import "./base.css";
+@import "./animation.css";
+@import "./layout.css";
+@import "./button.css";
+@import "./header.css";
+@import "./home.css";
+@import "./about.css";
+@import "./projects.css";
+@import "./search-bar.css";
+
+
+
+
+
+
+/* ALWAYS PUT RESPONSIVE.CSS LAST*/
+@import "./responsive.css";

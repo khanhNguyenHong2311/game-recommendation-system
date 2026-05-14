@@ -1,0 +1,96 @@
+/* ============== GOOGLE FONTS ============== */
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* ============== VARIABLES CSS ============== */
+:root {
+  --header-height: 2.5rem;
+
+  /* ----------- Colors ----------- */
+  --hue: 180;
+  --primary-color: hsl(180, 80%, 50%);
+  --primary-color-alt: hsl(240, 100%, 58%);
+  --secondary-color: hsl(240, 100%, 58%);
+  --white-color: hsl(0, 0%, 100%);
+  --black-color: hsl(0, 0%, 0%);
+  --yellow-color: hsl(50, 100%, 50%);
+  --blue-color: hsl(240, 100%, 50%);
+  --text-color: hsl(180, 8%, 70%);
+  --text-color-light: hsl(180, 8%, 50%);
+  --title-color: hsl(0, 0%, 100%);
+  --body-color: hsl(120, 7%, 8%);
+  --container-color: hsl(180, 8%, 12%);
+
+  /* ----------- Font and typography ----------- */
+  --body-font: "Unbounded", sans-serif;
+  --secondary-font: "Montserrat", sans-serif;
+  --biggest-font-size: 2rem;
+  --bigger-font-size: 1.75rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.983rem;
+  --normal-font-size-alt: 0.95rem;
+  --small-font-size: 0.813rem;
+
+  /* ----------- Font weight ----------- */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /* ----------- Z index ----------- */
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* ========= BASE ========= */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body,
+button,
+input,
+textarea {
+  font: var(--font-light) var(--normal-font-size) var(--body-font);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--white-color);
+  overflow-x: clip;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
