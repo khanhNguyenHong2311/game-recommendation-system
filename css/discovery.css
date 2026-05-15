@@ -38,7 +38,7 @@
 }
 
 .discovery__results p {
-  font-size: 12px;
+  font-size: 14px;
   color: #8f98a0;
   font-family: var(--secondary-font);
 }
@@ -48,7 +48,7 @@
   border: 1px solid #316282;
   color: #c6d4df;
   padding: 4px 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--secondary-font);
   cursor: pointer;
   outline: none;
@@ -79,7 +79,7 @@
   cursor: pointer;
   user-select: none;
   font-family: var(--secondary-font);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: #c6d4df;
   transition: background 0.15s;
@@ -88,7 +88,7 @@
 .filter-section__header:hover { background: #2a475e; }
 
 .filter-section__header i {
-  font-size: 11px;
+  font-size: 13px;
   transition: transform 0.2s;
 }
 
@@ -114,7 +114,7 @@
   gap: 8px;
   cursor: pointer;
   font-family: var(--secondary-font);
-  font-size: 12px;
+  font-size: 14px;
   color: #c6d4df;
   transition: color 0.15s;
 }
@@ -149,7 +149,7 @@
   border: 1px solid #316282;
   color: #c6d4df;
   padding: 5px 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--secondary-font);
   outline: none;
   border-radius: 2px;
@@ -164,7 +164,7 @@
   border: 1px solid #316282;
   color: #c6d4df;
   padding: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--secondary-font);
   cursor: pointer;
   border-radius: 2px;
@@ -173,3 +173,106 @@
 }
 
 .filter-clear:hover { background: #316282; }
+
+
+.tag-suggestion {
+  padding: 5px 8px;
+  font-size: 14px;
+  font-family: var(--secondary-font);
+  color: #c6d4df;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+
+.tag-suggestion:hover { background: #2a475e; color: #66c0f4; }
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #2a475e;
+  border: 1px solid #316282;
+  color: #c6d4df;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-family: var(--secondary-font);
+  margin: 3px 3px 0 0;
+}
+
+.tag-badge button {
+  background: none;
+  border: none;
+  color: #8f98a0;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0;
+  line-height: 1;
+}
+
+.tag-badge button:hover { color: #66c0f4; }
+
+
+
+.game-card {
+  display: flex;
+  gap: 1rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(49, 98, 130, 0.3);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 2px;
+}
+
+.game-card:hover { background: rgba(42, 71, 94, 0.3); padding-left: 8px; }
+
+.game-card__img {
+  width: 184px;
+  height: 69px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.game-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.game-card__name {
+  font-family: var(--secondary-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--title-color);
+}
+
+.game-card__genres {
+  font-size: 11px;
+  color: #8f98a0;
+  font-family: var(--secondary-font);
+}
+
+.game-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-card__positive {
+  font-size: 11px;
+  color: #66c0f4;
+  font-family: var(--secondary-font);
+}
+
+.game-card__price {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--secondary-font);
+  color: #beee11;
+}
+
+.game-card__price.free { color: #4caf6b; }

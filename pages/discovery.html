@@ -83,6 +83,9 @@
             <div id="results" style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;"></div> -->
         </div>
 
+        <!-- Query badge -->
+        <div class="discovery__query-badge" id="queryBadge"></div>
+
         <div class="discovery__body">
             <!-- Result -->
             <div>
@@ -149,8 +152,9 @@
                         Genre <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="filter-section__body">
-                        <input type="text" class="filter-search" placeholder="Search genres..." id="genreSearch" oninput="filterGenreList()" />
-                    <div id="genreList"></div>
+                      <input type="text" class="filter-search" placeholder="Search genres..." id="genreSearch" oninput="showGenreSuggestions()" />
+                      <div id="genreSuggestions"></div>
+                      <div id="genreBadges"></div>
                     </div>
                 </div>
 
@@ -160,8 +164,9 @@
                         Tags <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="filter-section__body">
-                        <input type="text" class="filter-search" placeholder="Search tags..." id="tagSearch" oninput="filterTagList()" />
-                        <div id="tagList"></div>
+                        <input type="text" class="filter-search" placeholder="Search tags..." id="tagSearch" oninput="showTagSuggestions()" />
+                        <div id="tagSuggestions"></div>
+                        <div id="tagBadges"></div>
                     </div>
                 </div>
 
