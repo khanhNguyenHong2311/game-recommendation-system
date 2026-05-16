@@ -1,6 +1,5 @@
-const API = 'http://localhost:8000';
 let currentPageDiscovery = 1;
-const perPage = 15;
+const perPage = 25;
 let allResults = [];
 let selectedTags = [];
 let selectedGenres = [];
@@ -47,7 +46,7 @@ async function doSearch() {
   const q = document.getElementById('searchInputDiscovery').value.trim();
   const filters = getFilters();
 
-  // Update query badge
+
   const badge = document.getElementById('queryBadge');
   if (q) {
     badge.innerHTML = `
@@ -71,21 +70,19 @@ async function doSearch() {
     const data = await res.json();
     let results = data.results || [];
 
-    // Client-side genre filter
+
     if (filters.genres.length > 0) {
       results = results.filter(game =>
-        filters.genres.some(g => game.genres?.toLowerCase().includes(g.toLowerCase()))
+        filters.genres.some(genre => game.genres?.toLowerCase().includes(genre.toLowerCase()))
       );
     }
 
-    // Client-side tag filter  
     if (filters.tags.length > 0) {
       results = results.filter(game =>
-        filters.tags.some(t => game.tags?.toLowerCase().includes(t.toLowerCase()))
+        filters.tags.some(tag => game.tags?.toLowerCase().includes(tag.toLowerCase()))
       );
     }
 
-    // Price paid filter
     if (filters.price === 'paid') {
       results = results.filter(game => game.price > 0);
     }
@@ -97,8 +94,9 @@ async function doSearch() {
     document.getElementById('resultsList').innerHTML = `
       <div class="state-box">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        <p>Cannot connect to API. Make sure uvicorn is running.</p>
-      </div>`;
+        <p>Cannot connect to API.</p>
+      </div>
+      `;
   }
 }
 
@@ -109,6 +107,7 @@ function renderResults(results, total) {
   if (results.length === 0) {
     document.getElementById('resultsList').innerHTML = `
       <div class="state-box">
+        <i class="fa-regular fa-face-frown-open"></i>
         <p>No games found. Try different filters.</p>
       </div>`;
     document.getElementById('pagination').innerHTML = '';
@@ -121,7 +120,10 @@ function renderResults(results, total) {
   if (sort === 'positive') sorted.sort((a,b) => b.positive - a.positive);
   else if (sort === 'price_asc') sorted.sort((a,b) => a.price - b.price);
   else if (sort === 'price_desc') sorted.sort((a,b) => b.price - a.price);
-  else if (sort === 'name') sorted.sort((a,b) => a.name.localeCompare(b.name));
+  else if (sort === 'avg_time_asc') sorted.sort((a,b) => a.avg_playtime - b.avg_playtime);
+  else if (sort === 'avg_time_desc') sorted.sort((a,b) => b.avg_playtime - a.avg_playtime);
+  else if (sort === 'name_asc') sorted.sort((a,b) => a.name.localeCompare(b.name));
+  else if (sort === 'name_desc') sorted.sort((a,b) => b.name.localeCompare(a.name));
 
   // Paginate
   const start = (currentPageDiscovery - 1) * perPage;
@@ -148,11 +150,22 @@ function renderResults(results, total) {
   `).join('');
 
   // Pagination
-  const totalPages = Math.ceil(sorted.length / perPage);
+   const totalPages = Math.ceil(sorted.length / perPage);
   if (totalPages > 1) {
     let pages = '';
-    for (let i = 1; i <= Math.min(totalPages, 15); i++) {
-      pages += `<button class="${i === currentPageDiscovery ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+    const delta = 5;
+    const left = currentPageDiscovery - delta;
+    const right = currentPageDiscovery + delta;
+    let lastPage = 0;
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || (i >= left && i <= right)) {
+        if (lastPage && i - lastPage > 1) {
+          pages += `<button disabled>...</button>`;
+        }
+        pages += `<button class="${i === currentPageDiscovery ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+        lastPage = i;
+      }
     }
     document.getElementById('pagination').innerHTML = pages;
   } else {
@@ -164,8 +177,7 @@ function renderResults(results, total) {
 function initSearch() {
   const searchInput = document.getElementById('searchInputDiscovery');
   const searchButton = document.getElementById('searchBtnDiscovery');
-  
-  // Xử lý phím Enter
+
   if (searchInput) {
     searchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
@@ -173,11 +185,8 @@ function initSearch() {
         doSearch();
       }
     });
-
-
   }
-  
-  // Xử lý nút Click
+
   if (searchButton) {
     searchButton.addEventListener('click', () => {
       doSearch();
@@ -313,6 +322,14 @@ function toggleFilter(id) {
     document.getElementById(id).classList.toggle('collapsed');
 }
 
+function onSortChange() {
+  if (allResults.length > 0) {
+    renderResults(allResults, allResults.length);
+  } else {
+    doSearch();
+  }
+}
+
 function goPage(page) {
   currentPageDiscovery = page;
   renderResults(allResults, allResults.length);
@@ -320,7 +337,19 @@ function goPage(page) {
 }
 
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   initSearch();
+//   doSearch(); 
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q');
+  if (q) {
+    document.getElementById('searchInputDiscovery').value = q;
+  }
+
   initSearch();
-  doSearch(); 
+  doSearch();
 });

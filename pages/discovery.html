@@ -91,13 +91,14 @@
             <div>
                 <div class="discovery__results">
                     <p id="resultCount">Searching...</p>
-                    <select class="sort-select" id="sortSelect" onchange="doSearch()">
+                    <select class="sort-select" id="sortSelect" onchange="onSortChange()">
                         <option value="positive">Most Popular</option>
                         <option value="price_asc">Price: Low to High</option>
                         <option value="price_desc">Price: High to Low</option>
                         <option value="avg_time_asc">Avg playtime: Low to High</option>
                         <option value="avg_time_desc">Avg playtime: High to Low</option>
-                        <option value="name">Name A-Z</option>
+                        <option value="name_asc">Name: A - Z</option>
+                        <option value="name_desc">Name: Z - A</option>
                     </select>
                 </div>
                 <div id="resultsList"></div>

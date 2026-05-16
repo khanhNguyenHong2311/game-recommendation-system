@@ -1,0 +1,148 @@
+/* ============== PROJECTS ============== */
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; 
+  align-items: start;
+}
+
+
+.projects .section__title {
+  text-align: initial;
+  margin-left: 1.5rem;
+}
+
+.projects__card {
+  max-width: 250px;
+  height: 330px;
+  position: relative;
+  background-color: var(--container-color);
+  padding: 1rem;
+  overflow: hidden;
+  border-radius: .75rem;
+}
+
+.projects__card .blob {
+  z-index: 0;
+  right: -7.75rem;
+  bottom: 0;
+}
+
+.projects__number, .projects__data, .projects__image {
+  position: relative;
+  z-index: 1;
+}
+
+.projects__number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.projects__number h1{
+  font-size: var(--normal-font-size);
+}
+
+.projects__number{
+  font-weight: var(--font-regular);
+  font-size: var(--h3-font-size);
+}
+
+.projects__data{
+  margin-block: 1rem;
+}
+
+.projects__title{
+  font-size: 15px;
+  margin-bottom: 1rem;
+}
+
+.projects__subtitle{
+  font-family: var(--second-font);
+  font-size: var(--small-font-size);
+  margin-bottom: .5rem;
+}
+
+.projects__description{
+  font-size: 13px;
+  word-break: break-word; /* xuống dòng nếu dài */
+  margin-bottom: 1rem;
+}
+
+.projects__img{
+  border-radius: .5rem;
+}
+
+.projects__button{
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height:40px;
+  background-color: var(--body-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  color:var(--title-color);
+  font-size: 2rem;
+  position: absolute;
+  top: .75rem;
+  right: .75rem; 
+  opacity: 0;
+  pointer-events: none;
+  transition: box-shadow .4s, opacity .4s;
+}
+
+.projects__button i{
+  font-size: 20px;
+}
+
+.projects__button:hover {
+  box-shadow: 0 0 24px var(--primary-color);
+}
+
+.projects__image:hover .projects__button{
+  opacity: 1;
+  pointer-events: initial;
+}
+
+
+.projects__swiper {
+  margin-inline: initial;
+  padding-bottom: 2rem;
+}
+
+.projects__swiper .swiper-pagination-bullets{
+  bottom: 0;
+}
+
+.projects__swiper .swiper-pagination-bullet{
+  background-color: var(--primary-color);
+  transition: opacity .4s;
+}
+
+.projects__reviews {
+  font-size: var(--small-font-size);
+  color: #ffffff;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;  
+  gap: 0.3rem;
+}
+
+.projects__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.genre-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-family: var(--secondary-font);
+  white-space: nowrap;
+}

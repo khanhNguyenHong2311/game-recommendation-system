@@ -1,3 +1,4 @@
+const API = 'http://localhost:8000';
 const currentPageMain = window.location.pathname.split('/').pop();
 
 document.querySelectorAll('.nav__link').forEach(link => {

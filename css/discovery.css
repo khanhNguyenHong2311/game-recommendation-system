@@ -119,7 +119,7 @@
   transition: color 0.15s;
 }
 
-.filter-checkbox:hover { color: #66c0f4; }
+.filter-checkbox:hover { color: var(--primary-color-alt2); }
 
 .filter-checkbox input[type="checkbox"] {
   accent-color: #66c0f4;
@@ -130,7 +130,7 @@
 }
 
 .filter-checkbox input[type="radio"] {
-  accent-color: #66c0f4;
+  accent-color: var(--primary-color-alt2);
   width: 14px;
   height: 14px;
   cursor: pointer;
@@ -185,7 +185,7 @@
   transition: background 0.15s;
 }
 
-.tag-suggestion:hover { background: #2a475e; color: #66c0f4; }
+.tag-suggestion:hover { background: #2a475e; color: var(--primary-color-alt2); }
 
 .tag-badge {
   display: inline-flex;
@@ -211,10 +211,10 @@
   line-height: 1;
 }
 
-.tag-badge button:hover { color: #66c0f4; }
+.tag-badge button:hover { color: var(--primary-color-alt2); }
 
 
-
+/* Game card */
 .game-card {
   display: flex;
   gap: 1rem;
@@ -264,7 +264,7 @@
 
 .game-card__positive {
   font-size: 11px;
-  color: #66c0f4;
+  color: var(--primary-color-alt2);
   font-family: var(--secondary-font);
 }
 
@@ -277,7 +277,7 @@
 
 .game-card__price.free { color: #4caf6b; }
 
-
+/* Pagination */
 .pagination {
   display: flex;
   gap: 0.5rem;
@@ -297,10 +297,16 @@
   transition: background 0.2s;
 }
 
+.pagination button:disabled {
+  cursor: default;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .pagination button:hover,
 .pagination button.active { background: #316282; color: white; }
 
-/* Loading / empty */
+/* Loading empty */
 .state-box {
   display: flex;
   flex-direction: column;
@@ -337,6 +343,7 @@
   border-radius: 2px;
   font-size: 13px;
   font-family: var(--secondary-font);
+  margin-top: 1rem;
 }
 
 .query-tag button {
@@ -349,7 +356,7 @@
   line-height: 1;
 }
 
-.query-tag button:hover { color: #66c0f4; }
+.query-tag button:hover { color: var(--primary-color-alt2); }
 
 
 

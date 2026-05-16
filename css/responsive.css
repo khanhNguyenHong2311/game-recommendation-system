@@ -268,9 +268,7 @@
     max-width: 1380px;
   }
 
-  .projects__subtitle, .projects__description {
-    font-size: var(--normal-font-size);
-  }
+
 
   .projects__button {
     top: 1.25rem;
