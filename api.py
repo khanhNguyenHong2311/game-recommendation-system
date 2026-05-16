@@ -4,6 +4,8 @@ from pydantic import BaseModel
 import pickle
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
+from rapidfuzz import fuzz, process
+from functools import lru_cache  
 
 app = FastAPI(title="Steam Game Recommender API")
 
@@ -18,6 +20,8 @@ app.add_middleware(
 games = pickle.load(open('games_list.pkl', 'rb'))
 games = games.loc[:, ~games.columns.duplicated()]
 tfidf_matrix = pickle.load(open('tfidf_matrix.pkl', 'rb'))
+
+
 print(games.columns.tolist())
 
 
@@ -40,6 +44,39 @@ def get_recommendations(title: str):
         }
         for idx_r, (_, row) in zip(related_indices, result.iterrows())
     ]
+
+
+@lru_cache(maxsize=128)
+def fast_smart_search(query):
+    query_clean = query.lower().strip()
+    words = query_clean.split()
+    
+    # Lọc thô bằng Pandas (Cực nhanh) để lấy các game chứa từ đầu tiên
+    mask = games['Name'].str.contains(words[0], case=False, na=False)
+    filtered_names = games[mask]['Name'].unique()
+    
+    # Ưu tiên bắt đầu bằng cụm từ
+    starts_with = [name for name in filtered_names if name.lower().startswith(query_clean)]
+    
+    # Chứa đầy đủ các từ khóa
+    contains_all = [
+        name for name in filtered_names 
+        if all(word in name.lower() for word in words)
+    ]
+    
+    # Fuzzy Matching trên tập đã lọc (Giúp tăng tốc độ xử lý)
+    fuzzy_results = process.extract(
+        query_clean, 
+        filtered_names, 
+        scorer=fuzz.token_set_ratio, 
+        limit=5000
+    )
+    fuzzy_matches = [res[0] for res in fuzzy_results if res[1] > 70]
+    
+    # Gộp và loại trùng
+    return list(dict.fromkeys(starts_with + contains_all + fuzzy_matches))
+
+
 
 # End point
     
@@ -73,6 +110,7 @@ def trending(limit: int = 5):
         raise HTTPException(status_code=500, detail=str(e))
     
 
+
 @app.get("/search")
 def search(
     q: str = "",
@@ -80,12 +118,22 @@ def search(
     tag: str = "",
     os: str = "",
     free: bool = False,
-    limit: int = 20
+    limit: int = 5000,
+    smart: bool = True
 ):
     try:
         df = games.copy()
         
-        if q:
+        if q and smart:
+            # Lấy danh sách tên game gợi ý
+            suggested_names = fast_smart_search(q)
+            if suggested_names:
+                # Lọc theo danh sách gợi ý
+                df = df[df['Name'].isin(suggested_names)]
+            else:
+                # Fallback về tìm kiếm thông thường
+                df = df[df['Name'].str.contains(q, case=False, na=False)]
+        elif q:
             df = df[df['Name'].str.contains(q, case=False, na=False)]
         
         if genre:
@@ -113,6 +161,7 @@ def search(
                     "name": row["Name"],
                     "image": row["Header image"],
                     "genres": row["Genres"],
+                    "tags": row["Tags"], 
                     "price": float(row["Price"]),
                     "positive": int(row["Positive"])
                 }
@@ -121,3 +170,5 @@ def search(
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+

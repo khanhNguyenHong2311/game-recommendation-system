@@ -29,7 +29,18 @@ const GENRES = [
 ]
 
 
-
+function showSkeleton() {
+  document.getElementById('resultsList').innerHTML = Array(6).fill(`
+    <div class="skeleton-card">
+      <div class="skeleton skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton skeleton-line w80"></div>
+        <div class="skeleton skeleton-line w60"></div>
+        <div class="skeleton skeleton-line w40"></div>
+      </div>
+    </div>
+  `).join('');
+}
 
 async function doSearch() {
   currentPageDiscovery = 1;
@@ -48,10 +59,10 @@ async function doSearch() {
     badge.innerHTML = '';
   }
 
-  // showSkeleton();
+  showSkeleton();
 
   try {
-    let url = `${API}/search?limit=200`;
+    let url = `${API}/search?limit=5000`;
     if (q) url += `&q=${encodeURIComponent(q)}`;
     if (filters.os) url += `&os=${filters.os}`;
     if (filters.price === 'free') url += `&free=true`;
@@ -70,7 +81,7 @@ async function doSearch() {
     // Client-side tag filter  
     if (filters.tags.length > 0) {
       results = results.filter(game =>
-        filters.tags.some(t => game.genres?.toLowerCase().includes(t.toLowerCase()))
+        filters.tags.some(t => game.tags?.toLowerCase().includes(t.toLowerCase()))
       );
     }
 
@@ -98,7 +109,6 @@ function renderResults(results, total) {
   if (results.length === 0) {
     document.getElementById('resultsList').innerHTML = `
       <div class="state-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
         <p>No games found. Try different filters.</p>
       </div>`;
     document.getElementById('pagination').innerHTML = '';
@@ -141,7 +151,7 @@ function renderResults(results, total) {
   const totalPages = Math.ceil(sorted.length / perPage);
   if (totalPages > 1) {
     let pages = '';
-    for (let i = 1; i <= Math.min(totalPages, 10); i++) {
+    for (let i = 1; i <= Math.min(totalPages, 15); i++) {
       pages += `<button class="${i === currentPageDiscovery ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
     }
     document.getElementById('pagination').innerHTML = pages;
@@ -151,7 +161,30 @@ function renderResults(results, total) {
 }
 
 
+function initSearch() {
+  const searchInput = document.getElementById('searchInputDiscovery');
+  const searchButton = document.getElementById('searchBtnDiscovery');
+  
+  // Xử lý phím Enter
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch();
+      }
+    });
 
+
+  }
+  
+  // Xử lý nút Click
+  if (searchButton) {
+    searchButton.addEventListener('click', () => {
+      doSearch();
+    });
+  }
+
+}
 
 
 
@@ -240,29 +273,30 @@ function removeGenre(genre) {
 }
 
 function clearFilters() {
-    const osRadios = document.querySelectorAll('input[name="os"]');
-    if (osRadios.length > 0) osRadios[0].checked = true;
+  const osRadios = document.querySelectorAll('input[name="os"]');
+  if (osRadios.length > 0) osRadios[0].checked = true;
 
-    const priceRadios = document.querySelectorAll('input[name="price"]');
-    if (priceRadios.length > 0) priceRadios[0].checked = true;
+  const priceRadios = document.querySelectorAll('input[name="price"]');
+  if (priceRadios.length > 0) priceRadios[0].checked = true;
 
-    selectedTags = [];
-    selectedGenres = [];
+  selectedTags = [];
+  selectedGenres = [];
 
-    document.getElementById('genreSearch').value = '';
-    document.getElementById('tagSearch').value = '';
-
-
-    document.getElementById('genreSuggestions').innerHTML = '';
-    document.getElementById('tagSuggestions').innerHTML = '';
+  document.getElementById('genreSearch').value = '';
+  document.getElementById('tagSearch').value = '';
 
 
-    renderGenreBadges();
-    renderTagBadges();
+  document.getElementById('genreSuggestions').innerHTML = '';
+  document.getElementById('tagSuggestions').innerHTML = '';
 
 
-    doSearch();
+  renderGenreBadges();
+  renderTagBadges();
+
+
+  doSearch();
 }
+
 
 function getFilters() {
   const os = document.querySelector('input[name="os"]:checked')?.value || '';
@@ -271,7 +305,7 @@ function getFilters() {
 }
 
 function clearQuery() {
-  document.getElementById('discoveryInput').value = '';
+  document.getElementById('searchInputDiscovery').value = '';
   doSearch();
 }
 
@@ -279,7 +313,14 @@ function toggleFilter(id) {
     document.getElementById(id).classList.toggle('collapsed');
 }
 
+function goPage(page) {
+  currentPageDiscovery = page;
+  renderResults(allResults, allResults.length);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    doSearch(); 
+  initSearch();
+  doSearch(); 
 });
