@@ -276,3 +276,106 @@
 }
 
 .game-card__price.free { color: #4caf6b; }
+
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.pagination button {
+  background: #2a475e;
+  border: 1px solid #316282;
+  color: #c6d4df;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: var(--secondary-font);
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+.pagination button:hover,
+.pagination button.active { background: #316282; color: white; }
+
+/* Loading / empty */
+.state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  color: #8f98a0;
+  gap: 1rem;
+  font-family: var(--secondary-font);
+  font-size: 14px;
+}
+
+.state-box i { font-size: 2.5rem; opacity: 0.4; }
+
+
+
+
+
+
+.discovery__query-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.query-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #2a475e;
+  border: 1px solid #316282;
+  color: #c6d4df;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-size: 13px;
+  font-family: var(--secondary-font);
+}
+
+.query-tag button {
+  background: none;
+  border: none;
+  color: #c6d4df;
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.query-tag button:hover { color: #66c0f4; }
+
+
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #1b2838 25%, #2a475e 50%, #1b2838 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius: 2px;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  display: flex;
+  gap: 1rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(49,98,130,0.3);
+}
+
+.skeleton-img { width: 184px; height: 69px; flex-shrink: 0; }
+.skeleton-body { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+.skeleton-line { height: 12px; border-radius: 2px; }
+.skeleton-line.w60 { width: 60%; }
+.skeleton-line.w40 { width: 40%; }
+.skeleton-line.w80 { width: 80%; }
