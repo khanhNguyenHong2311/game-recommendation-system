@@ -11,12 +11,13 @@
 .projects .section__title {
   text-align: initial;
   margin-left: 1.5rem;
+  margin-top: 7rem;
 }
 
 .projects__card {
   margin-top: 8px;
-  max-width: 250px;
-  height: 330px;
+  max-width: 260px;
+  height: 340px;
   position: relative;
   background-color: var(--container-color);
   padding: 1rem;

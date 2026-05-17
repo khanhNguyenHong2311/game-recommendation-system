@@ -1,26 +1,5 @@
 window.API = 'http://localhost:8000';
 
-// ===== LOCAL STORAGE =====
-function getFavorites() {
-  return JSON.parse(localStorage.getItem('grs_favorites') || '[]');
-}
-
-function saveFavorites(favs) {
-  localStorage.setItem('grs_favorites', JSON.stringify(favs));
-}
-
-function removeFromFavorites(name) {
-  const favs = getFavorites().filter(f => f.name !== name);
-  saveFavorites(favs);
-  renderFavorites();
-}
-
-function clearAllFavorites() {
-  if (!confirm('Clear all favorites?')) return;
-  saveFavorites([]);
-  renderFavorites();
-  document.getElementById('recommendationsSection').style.display = 'none';
-}
 
 // ===== RENDER FAVORITES LIST =====
 function renderFavorites() {
@@ -199,6 +178,31 @@ async function loadRecommendations() {
   }
 }
 
+
+// ===== LOCAL STORAGE =====
+function getFavorites() {
+  return JSON.parse(localStorage.getItem('grs_favorites') || '[]');
+}
+
+function saveFavorites(favs) {
+  localStorage.setItem('grs_favorites', JSON.stringify(favs));
+}
+
+function removeFromFavorites(name) {
+  const favs = getFavorites().filter(f => f.name !== name);
+  saveFavorites(favs);
+  renderFavorites();
+}
+
+function clearAllFavorites() {
+  if (!confirm('Clear all favorites?')) return;
+  saveFavorites([]);
+  renderFavorites();
+  document.getElementById('recommendationsSection').style.display = 'none';
+}
+
+
+
 // ===== DEMO DATA (test) =====
 
 function addDemoData() {
@@ -218,3 +222,4 @@ document.addEventListener('DOMContentLoaded', () => {
   addDemoData();
   renderFavorites();
 });
+

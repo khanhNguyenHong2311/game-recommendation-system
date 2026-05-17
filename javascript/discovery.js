@@ -73,13 +73,13 @@ async function doSearch() {
 
     if (filters.genres.length > 0) {
       results = results.filter(game =>
-        filters.genres.some(genre => game.genres?.toLowerCase().includes(genre.toLowerCase()))
+        filters.genres.every(genre => game.genres?.toLowerCase().includes(genre.toLowerCase()))
       );
     }
 
     if (filters.tags.length > 0) {
       results = results.filter(game =>
-        filters.tags.some(tag => game.tags?.toLowerCase().includes(tag.toLowerCase()))
+        filters.tags.every(tag => game.tags?.toLowerCase().includes(tag.toLowerCase()))
       );
     }
 
