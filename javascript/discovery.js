@@ -118,7 +118,8 @@ function renderResults(results, total) {
   const paginated = sorted.slice(start, start + perPage);
 
   document.getElementById('resultsList').innerHTML = paginated.map(game => `
-    <div class="game-card">
+    <div class="game-card"
+     onclick="openGameInfo('${game.name}')"">
       <img class="game-card__img" src="${game.image}" alt="${game.name}"
             onerror="this.src='https://placehold.co/184x69/1b2838/8f98a0?text=No+Image'">
       <div class="game-card__info">
@@ -283,3 +284,10 @@ function toggleFilter(id) {
 document.addEventListener('DOMContentLoaded', () => {
     doSearch(); 
 });
+
+
+
+function openGameInfo(gameName) {
+    window.location.href =
+        `info.html?game=${encodeURIComponent(gameName)}`;
+}
