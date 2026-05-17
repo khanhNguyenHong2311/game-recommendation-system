@@ -129,25 +129,32 @@ function renderResults(results, total) {
   const start = (currentPageDiscovery - 1) * perPage;
   const paginated = sorted.slice(start, start + perPage);
 
-  document.getElementById('resultsList').innerHTML = paginated.map(game => `
-    <div class="game-card">
-      <img class="game-card__img" src="${game.image}" alt="${game.name}"
-            onerror="this.src='https://placehold.co/184x69/1b2838/8f98a0?text=No+Image'">
-      <div class="game-card__info">
-        <div class="game-card__name">${game.name}</div>
-        <div class="game-card__genres">${game.genres || ''}</div>
-        <div class="game-card__meta">
-          <span class="game-card__positive">
-            <i class="fa-solid fa-thumbs-up" style="font-size:10px;"></i>
-            ${game.positive?.toLocaleString() || 0} reviews
-          </span>
-          <span class="game-card__price ${game.price === 0 ? 'free' : ''}">
-            ${game.price === 0 ? 'Free' : '$' + game.price?.toFixed(2)}
-          </span>
+ document.getElementById('resultsList').innerHTML = paginated.map(game => {
+    // Tạo badge genres từ chuỗi genres
+    const genreBadges = (game.genres || '').split(',').map(g => 
+      `<span class="genre-badge">${g.trim()}</span>`
+    ).join('');
+
+    return `
+      <div class="game-card">
+        <img class="game-card__img" src="${game.image}" alt="${game.name}"
+              onerror="this.src='https://placehold.co/184x69/1b2838/8f98a0?text=No+Image'">
+        <div class="game-card__info">
+          <div class="game-card__name">${game.name}</div>
+          <div class="game-card__genres">${genreBadges}</div>
+          <div class="game-card__meta">
+            <span class="game-card__positive">
+              <i class="fa-solid fa-thumbs-up" style="font-size:10px;"></i>
+              ${game.positive?.toLocaleString() || 0} reviews
+            </span>
+            <span class="game-card__price ${game.price === 0 ? 'free' : ''}">
+              ${game.price === 0 ? 'Free' : '$' + game.price?.toFixed(2)}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   // Pagination
    const totalPages = Math.ceil(sorted.length / perPage);

@@ -33,7 +33,7 @@ def get_recommendations(title: str):
     idx = matches.index[0]
     query_vector = tfidf_matrix[idx]
     sim_scores = cosine_similarity(query_vector, tfidf_matrix).flatten()
-    related_indices = sim_scores.argsort()[-6:-1][::-1]
+    related_indices = sim_scores.argsort()[-21:-1][::-1]
     result = games.iloc[related_indices]
 
     return [

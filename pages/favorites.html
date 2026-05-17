@@ -63,72 +63,80 @@
     <!--================== MAIN ==================-->
 
     <main class="main">
-      <!--================== HOME SECTION ==================-->
-      <section class="home section" id="home">
-        <div class="home__top">
-          
-          <div class="home__data">
-            <h3 class="home__greeting">Welcome to</h3>
-            <h1 class="home__name">Smart Game <br />Recommendation System</h1>
-          </div>
-
-          <div class="search__wrapper">
-
-            <div class="home__suggestion">
-              <h3>Find Your Next Favorite</h3>
-            </div>
-
-            <div class="home__search">
-              <input type="text" id="searchInput" placeholder="Search a game to get recommendations...">
-              <button id="searchBtn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </div>
-
-            <div id="searchDropdown"></div>
-          </div>
+      <section class="favorites section container">
+ 
+        <!-- Breadcrumb -->
+        <div class="favorites__breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Your Favorites</span>
         </div>
-
-
-
-      </section>
-
-      <!--================== ABOUT SECTION ==================-->
-      <section class="about section" id="about">
-        
-      </section>
+ 
+        <h1 class="favorites__title">Your Favorites</h1>
+ 
+        <div class="favorites__layout">
+            <!-- Left: Favorites list -->
+            <div class="favorites__left">
+            <div class="favorites__list-header">
+                <span id="favCount">0 games</span>
+                <button class="fav__clear-btn" onclick="clearAllFavorites()">
+                <i class="fa-solid fa-trash"></i> Clear All
+                </button>
+            </div>
+    
+            <div id="favoritesList">
+                <!-- Rendered by JS -->
+            </div>
+    
+            <!-- Empty state -->
+            <div class="favorites__empty" id="emptyState">
+                <i class="fa-solid fa-heart-crack"></i>
+                <p>No favorites yet.</p>
+                <a href="discovery.html" class="fav__discover-btn">Discover Games</a>
+            </div>
+            
+        </div>
+ 
+        <!-- Right: Summary + Recommendations -->
+        <div class="favorites__right">
+ 
+          <!-- Summary box -->
+          <div class="favorites__summary">
+            <div class="summary__title">
+              <i class="fa-solid fa-list"></i>
+              Your List
+            </div>
+            <div id="summaryList"></div>
+            <div class="summary__total">
+              <span>Total</span>
+              <span id="summaryCount">0 games</span>
+            </div>
+            <button class="fav__recommend-btn" onclick="loadRecommendations()">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              Get Recommendations
+            </button>
+          </div>
+ 
+        </div>
+      </div>
+ 
+      <!-- Recommendations section -->
+      <div class="favorites__recommendations" id="recommendationsSection" style="display:none;">
+        <h2 class="favorites__rec-title">
+          <i class="fa-solid fa-thumbs-up"></i>
+          Recommended For You
+        </h2>
+        <p class="favorites__rec-subtitle">Based on your favorites list</p>
+        <div id="recommendationsList"></div>
+      </div>
+ 
+    </section>
+      
     </main>
 
     <!--================== PROJECTS ==================-->
     <section class="projects section" id="projects">
-      <h2 class="section__title">
-        Pick a Game<br /><span>We’ll Recommend Similar Ones</span>
-      </h2>
 
-      <div class="projects__container container grid">
-
-        <h3 class="projects__type-title">Trending Now</h3>
-        <div class="projects__swiper swiper swiper-popular">
-          <div class="swiper-wrapper" id="carousel-popular"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-
-        <h3 class="projects__type-title">Best Free Games</h3>
-          <div class="projects__swiper swiper swiper-free">
-            <div class="swiper-wrapper" id="carousel-free"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-
-        <h3 class="projects__type-title">Play With Friends</h3>
-        <div class="projects__swiper swiper swiper-multiplayer">
-          <div class="swiper-wrapper" id="carousel-multiplayer"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-
-      </div>
     </section>
 
     <!--================== ANIME JS ==================-->
@@ -137,8 +145,8 @@
     <script src="../javascript/split_text.js"></script>
     <script src="../javascript/swiper-bundle.min.js"></script>
     <script src="../javascript/swiper.js"></script>
-    <script src="../javascript/discovery.js"></script>
     <script src="../javascript/search_bar.js"></script>
     <script src="../javascript/carousel.js"></script>
+    <script src="../javascript/favorites.js"></script>
   </body>
 </html>
