@@ -344,10 +344,6 @@ function goPage(page) {
 }
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   initSearch();
-//   doSearch(); 
-// });
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -360,3 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   doSearch();
 });
+
+
+function openGameInfo(gameName) {
+    window.location.href =
+        `info.html?game=${encodeURIComponent(gameName)}`;
+}

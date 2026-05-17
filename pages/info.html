@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Info</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link href="../css/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/info.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="blob-animate"></div>
+
+      <nav class="nav container">
+        <a href="index.html" class="nav__logo">GRS</a>
+
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Home</a></li>
+          <li><a class="nav__link" href="discovery.html">Discovery</a></li>
+          <li><a class="nav__link active" href="info.html">Genre</a></li>
+          <li><a class="nav__link" href="#favorites">Favorites</a></li>
+          <li><a class="nav__link" href="#favorites">Theme</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="game section container">
+
+        <!-- GAME TITLE -->
+        <h1 class="game__title" id="gameTitle">Loading...</h1>
+
+        <div class="game__bundle-wrapper">
+
+          <!-- LEFT -->
+          <div class="game__left-column">
+
+            <!-- HERO IMAGE -->
+            <div class="game__hero">
+              <img id="gameImage"
+                src=""
+                alt="game image"
+              />
+            </div>
+
+            <!-- PRICE -->
+            <div class="game__price-box">
+              <div class="price-box__title" id="gamePrice">
+                Free
+              </div>
+
+              <div class="price-box__action">
+                <button class="button game__btn-add" onclick="toggleFavorite()">
+                  <i class="fa-regular fa-heart"></i>
+                  <span id="favText">Add to Favorite</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- ABOUT -->
+            <div class="game__items">
+              <div class="game__desc">
+                <h2 class="section__title">
+                  <span>About</span> This Game
+                </h2>
+
+                <p id="gameDescription">
+                  Loading game description...
+                </p>
+                <div class="game__tags" id="gameTags"></div>
+                <h2 class="section__title">
+  Related <span>Games</span>
+</h2>
+
+<div class="game__items-list" id="relatedGames">
+
+  <!-- JS render here -->
+
+</div>
+              </div>
+
+              <!-- TAGS -->
+              <div class="game__tags" id="gameTags"></div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="game__panel">
+
+            <div class="meta-info__block">
+              <div class="meta-info__block">
+
+              <h3>Game Information</h3>
+
+              <p>
+                <strong>Title:</strong>
+                <span id="metaTitle">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Genres:</strong>
+                <span id="metaGenres">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Developer:</strong>
+                <span id="metaDeveloper">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Publisher:</strong>
+                <span id="metaPublisher">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Release Date:</strong>
+                <span id="metaRelease">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Languages:</strong>
+                <span id="metaLanguages">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Platforms:</strong>
+                <span id="metaPlatforms">Loading...</span>
+              </p>
+
+              <p>
+                <strong>Positive Reviews:</strong>
+                <span id="metaPositive">0</span>
+              </p>
+
+              <p>
+                <strong>Price:</strong>
+                <span id="metaPrice">Free</span>
+              </p>
+
+              </div>
+            </div>
+
+            <div class="game__stats">
+              <div class="stat-item">
+                <i class="fa-solid fa-user"></i> Singleplayer
+              </div>
+
+              <div class="stat-item">
+                <i class="fa-solid fa-users"></i> Multiplayer
+              </div>
+
+              <div class="stat-item">
+                <i class="fa-solid fa-trophy"></i> Steam Achievements
+              </div>
+
+              <div class="stat-item">
+                <i class="fa-solid fa-cloud"></i> Steam Cloud
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- INFO JS -->
+    <script src="../javascript/info.js"></script>
+
+  </body>
+</html>

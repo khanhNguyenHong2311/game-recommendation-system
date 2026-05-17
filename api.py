@@ -164,11 +164,55 @@ def search(
                     "tags": row["Tags"], 
                     "price": float(row["Price"]),
                     "positive": int(row["Positive"]),
-                    "avg_playtime": int(row["Average playtime forever"])
+                    "avg_playtime": int(row["Average playtime forever"]),
+
+                    "about": row.get("About the game", ""),
+                    "developer": row.get("Developers", ""),
+                    "publisher": row.get("Publishers", ""),
+                    "languages": row.get("Supported languages", ""),
+                    "release_date": row.get("Release date", ""),
+
+                    "windows": bool(row.get("Windows", False)),
+                    "mac": bool(row.get("Mac", False)),
+                    "linux": bool(row.get("Linux", False))
                 }
                 for _, row in df.head(limit).iterrows()
             ]
         }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    
+@app.get("/game")
+def game_detail(name: str):
+    try:
+        game = games[games['Name'] == name]
+
+        if game.empty:
+            raise HTTPException(status_code=404, detail="Game not found")
+
+        row = game.iloc[0]
+
+        return  {
+        "name": row["Name"],
+        "image": row["Header image"],
+        "genres": row.get("Genres", ""),
+        "price": float(row["Price"]),
+        "positive": int(row["Positive"]),
+
+        "tags": row.get("Tags", ""),
+        "description": row.get("About the game", ""),
+        "developer": row.get("Developers", ""),
+        "publisher": row.get("Publishers", ""),
+        "languages": row.get("Supported languages", ""),
+        "release_date": row.get("Release date", ""),
+
+        "windows": bool(row.get("Windows", False)),
+        "mac": bool(row.get("Mac", False)),
+        "linux": bool(row.get("Linux", False))
+    }
+
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     

@@ -1,0 +1,242 @@
+/* --- BỐ CỤC CHÍNH 2 CỘT --- */
+.game__title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.game__bundle-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Chia tỉ lệ 2 phần bên trái, 1 phần bên phải */
+  gap: 2rem;
+  align-items: start;
+}
+
+/* --- CỘT TRÁI --- */
+.game__left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.game__hero img {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* THANH MUA HÀNG KIỂU STEAM */
+.game__price-box {
+  background: linear-gradient(90deg, rgba(26, 38, 53, 0.8) 0%, rgba(15, 22, 31, 0.8) 100%);
+  border-radius: 4px;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.price-box__title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.price-box__title span {
+  color: #66c0f4;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.price-box__action {
+  display: flex;
+  align-items: center;
+  background-color: #000;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.discount-tag {
+  background-color: #6b2222;
+  color: #000000;
+  padding: 8px 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 2px;
+}
+
+.price-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 15px;
+  text-align: right;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #566471;
+  font-size: 0.85rem;
+}
+
+.current-price {
+  color: #b8bcbf;
+  font-size: 1.1rem;
+}
+
+.game__btn-add {
+  background: linear-gradient( to bottom, #4c3b53 5%, #e01010 95%);
+  color: #d2efa9;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+}
+
+.game__btn-add:hover {
+  background: linear-gradient( to bottom, #000000 5%, #b41d1d 95%);
+  color: #fff;
+}
+
+/* DANH SÁCH ITEM PHÍA DƯỚI */
+.game__items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.item-card {
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 3px;
+  justify-content: space-between;
+}
+
+.item-card img {
+  width: 120px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.item-card__info {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.item-card__info h3 {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.item-card__info p {
+  font-size: 0.8rem;
+  color: #8f98a0;
+}
+
+.item-card__info p i {
+  margin-right: 5px;
+}
+
+.item-card__price {
+  color: #fff;
+  font-size: 0.95rem;
+  padding-right: 1rem;
+}
+
+
+
+.summary-row {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  color: #8f98a0;
+  font-size: 0.9rem;
+}
+
+.summary-row.discount span:last-child {
+  color: #a3d200;
+}
+
+.summary-row.total {
+  border-top: 1px solid #333;
+  padding-top: 0.5rem;
+  font-weight: bold;
+  color: #66c0f4;
+  font-size: 1.1rem;
+}
+
+/* --- CỘT PHẢI --- */
+.game__panel {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.25rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.meta-info__block h3 {
+  color: #8f98a0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+.meta-info__block p {
+  font-size: 0.85rem;
+  color: #acb2b8;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.meta-info__block p strong {
+  color: #546471;
+}
+
+/* DANH SÁCH TÍNH NĂNG PHÍA BÊN PHẢI */
+.game__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.05);
+  color: #67c1f5;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-item i {
+  color: #8f98a0;
+  width: 16px;
+  text-align: center;
+}
+
+/* Tương thích thiết bị di động (Responsive) */
+@media (max-width: 768px) {
+  .game__bundle-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
